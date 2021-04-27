@@ -36,27 +36,39 @@ const Main = () => {
     },[photos])
 
 
-    const createPhoto = () => {
+    const createPhoto = (photo: PhotoModel) => {
+        const timestamp = Date.now();
+        photo.id = `photo-${timestamp}`
+        setPhotos(prevPhotos => [...prevPhotos, photo]);
 
     }
 
-    const editPhoto = () => {
+    const editPhoto = (key: string, updatedPhoto: PhotoModel) => {
+        const updatedPhotos = photos.map(photo => photo.id ===key ? updatedPhoto : photo)
+        setPhotos(updatedPhotos)
+    }
+
+    const deletePhoto = (key: string) => {
+        const updatedPhotos = photos.filter(photo => photo.id !== key)
+        setPhotos(updatedPhotos);
 
     }
 
-    const deletePhoto = () => {
+    const createAlbum = (album: AlbumModel) => {
+        const timestamp = Date.now();
+        album.id = `album-${timestamp}`
+        setAlbums(prevAlbums => [...prevAlbums, album]);
+    }
+
+    const editAlbum = (key: string, updatedAlbum: AlbumModel) => {
+        const updatedAlbums = albums.map(album => album.id === key ? updatedAlbum : album)
+        setAlbums(updatedAlbums)
 
     }
 
-    const createAlbum = () => {
-
-    }
-
-    const editAlbum = () => {
-
-    }
-
-    const deleteAlbum = () => {
+    const deleteAlbum = (key: string) => {
+        const updatedAlbums = albums.filter(album => album.id !==key)
+        setAlbums(updatedAlbums);
 
     }
 
