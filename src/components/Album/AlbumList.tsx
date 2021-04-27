@@ -1,7 +1,9 @@
-import { Card } from "semantic-ui-react";
+import { Button, Card, Icon } from "semantic-ui-react";
 import { AlbumModel } from "../../models/AlbumModel"
 import { PhotoModel } from "../../models/PhotoModel";
+import { DeleteButton, WithLightbox } from "../Common";
 import Album from "./Album";
+import AlbumForm from "./AlbumForm";
 
 interface AlbumListProps {
     albums : AlbumModel[];
@@ -33,6 +35,25 @@ const AlbumList = ({ albums, photos, createAlbum, editAlbum, deleteAlbum}: Album
                     album = {album}
                     albumPhotos = {albumPhotos}
                 >
+                    <Button icon>
+                        <WithLightbox 
+                        photos = {albumPhotos}
+                        >
+                        <Icon name ='play' />
+                        </WithLightbox>
+                    </Button>
+                    {/* <AlbumForm
+                    formType = 'Edit'
+                    index = {album.id}
+                    albumProp = {album}
+                    editAlbum = {editAlbum}
+                    createAlbum = {createAlbum}
+                    /> */}
+                <DeleteButton
+                index = {album.id}
+                objectName = {album.name}
+                deleteObject = {deleteAlbum}
+                />
                 </Album>
             )
 
