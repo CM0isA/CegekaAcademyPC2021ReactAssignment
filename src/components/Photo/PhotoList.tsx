@@ -4,6 +4,7 @@ import Photo, { PhotoForm } from '../Photo';
 import { Card } from 'semantic-ui-react'
 // import StatusBar from '../StatusBar';
 import { DeleteButton } from '../Common';
+import { StatusBar } from '../StatusBar';
 
 interface PhotoListProps {
     photos: PhotoModel[];
@@ -45,14 +46,14 @@ const PhotoList = ({ photos, deletePhoto, editPhoto, createPhoto }: PhotoListPro
 
     return (
         <div>
-            {/* <StatusBar title={`${photos.length} Photo(s) total`}>
+            <StatusBar title={`${photos.length} Photo(s) total`}>
                 <PhotoForm 
                 formType='New'
                 createPhoto={createPhoto} 
                 index={''}
                 editPhoto={editPhoto}
                 />
-            </StatusBar> */}
+            </StatusBar>
             <Card.Group itemsPerRow={6} doubling>
                 {renderPhoto()}
             </Card.Group>

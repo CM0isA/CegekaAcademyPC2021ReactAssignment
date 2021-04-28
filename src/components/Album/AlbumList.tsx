@@ -1,7 +1,9 @@
+import React from "react";
 import { Button, Card, Icon } from "semantic-ui-react";
 import { AlbumModel } from "../../models/AlbumModel"
 import { PhotoModel } from "../../models/PhotoModel";
 import { DeleteButton, WithLightbox } from "../Common";
+import { StatusBar } from "../StatusBar";
 import Album from "./Album";
 import AlbumForm from "./AlbumForm";
 
@@ -36,19 +38,20 @@ const AlbumList = ({ albums, photos, createAlbum, editAlbum, deleteAlbum}: Album
                     albumPhotos = {albumPhotos}
                 >
                     <Button icon>
-                        <WithLightbox 
+                        <WithLightbox  
                         photos = {albumPhotos}
                         >
                         <Icon name ='play' />
                         </WithLightbox>
                     </Button>
-                    {/* <AlbumForm
+                    <AlbumForm
                     formType = 'Edit'
                     index = {album.id}
                     albumProp = {album}
+                    photos = {photos}
                     editAlbum = {editAlbum}
                     createAlbum = {createAlbum}
-                    /> */}
+                    />
                 <DeleteButton
                 index = {album.id}
                 objectName = {album.name}
@@ -62,6 +65,15 @@ const AlbumList = ({ albums, photos, createAlbum, editAlbum, deleteAlbum}: Album
     }
     return (
         <div>
+            <StatusBar title={`${photos.length} Album(s) total`}>
+                <AlbumForm 
+                formType='New'
+                createAlbum={createAlbum}
+                photos = {photos}
+                index={''}
+                editAlbum={editAlbum}
+                />
+            </StatusBar>
             <Card.Group itemsPerRow={4} doubling>
                 {renderAlbums()}
             </Card.Group>

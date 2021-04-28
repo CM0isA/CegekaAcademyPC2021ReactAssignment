@@ -1,4 +1,4 @@
-import { Card, Icon, Label } from "semantic-ui-react"
+import { Card, Icon, Label, Image, Button } from "semantic-ui-react"
 import { AlbumModel } from "../../models/AlbumModel"
 import { PhotoModel } from "../../models/PhotoModel"
 import { WithLightbox } from "../Common"
@@ -12,15 +12,15 @@ interface AlbumProps {
 
 const Album: React.FC<AlbumProps> = ({album, albumPhotos, children}) =>{
 
-    // const RenderPreviewImages = () => {
-    //     return (
-    //         albumPhotos
-    //         .filter((photo, index) => photo && index <4)
-    //         .map((photo, index) => {
-    //             return <Image key = {index} src={photo.url} />
-    //         })
-    //     );
-    // }
+    const RenderPreviewImages = () => {
+        return (
+            albumPhotos
+            .filter((photo, index) => photo && index <4)
+            .map((photo, index) => {
+                return <Image key = {index} src={photo.url} />
+            })
+        );
+    }
 
     const renderTags = () => {
         return (
@@ -43,6 +43,24 @@ const Album: React.FC<AlbumProps> = ({album, albumPhotos, children}) =>{
                     {albumPhotos.length}
                 </Label>
             </Card.Content>
+            <Card.Content className='photo-container'>
+                <Image.Group size ='tiny'>
+                {RenderPreviewImages()}
+                </Image.Group>
+            </Card.Content>
+            <Card.Content >
+                <Card.Description as ='p'>
+                    {album.description}
+                </Card.Description>
+                <Card.Meta>
+                    <Label tag size ='mini'>
+                        {renderTags()}
+                    </Label>
+                </Card.Meta>
+            </Card.Content>
+            <Button.Group >
+                {children}
+            </Button.Group>
         </Card>
     )
 }
