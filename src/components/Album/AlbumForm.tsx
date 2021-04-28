@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { AlbumModel} from '../../models/AlbumModel'
 import { PhotoModel} from '../../models/PhotoModel'
 import { Modal, Form, Button, Icon, Message } from 'semantic-ui-react';
+import { relative } from 'node:path';
 
 interface AlbumFormProps{
     formType: 'New' | 'Edit';
@@ -40,7 +41,7 @@ const AlbumForm = (props: AlbumFormProps) =>{
             ...album,
             [name]: value
         }
-        setAlbum(updatedAlbum)
+        setAlbum(updatedAlbum);
     }
 
     const isFormValid = () => {
@@ -54,7 +55,7 @@ const AlbumForm = (props: AlbumFormProps) =>{
     }
 
     const handleSubmit = (event: any) => {
-        if (isFormValid()) {
+        if (!isFormValid()) {
             setIsError(true);
             return;
         }
@@ -81,7 +82,7 @@ const AlbumForm = (props: AlbumFormProps) =>{
     const isNewForm = () => props.formType === 'New';
 
     return (
-        <Modal
+        <Modal style={{position:'absolute', top:'20%' }}
         trigger={
             <Button icon onClick={ShowForm}>
                 <Icon name={isNewForm() ? 'plus' : 'edit'}/>
@@ -89,7 +90,7 @@ const AlbumForm = (props: AlbumFormProps) =>{
         }
         closeIcon
         open={isModalOpen}
-        onClose={closeForm}
+        onClick={closeForm}
         >
             <Modal.Header>{isNewForm() ? 'Create Album' : `Edit: ${album.name}`}</Modal.Header>
             <Modal.Content>

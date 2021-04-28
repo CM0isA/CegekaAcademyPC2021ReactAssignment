@@ -6,13 +6,13 @@ interface StatusbarProps{
 
 const StatusBar:React.FC<StatusbarProps> = ({title, children}) => {
     return  (
-        <Grid column={2} className='status-bar'>
-            <Grid.Column>
+        <Grid column={2}> 
+            <Grid.Column class='four wide column right aligned'>
                 <Segment basic>
                     {title}
                 </Segment>
             </Grid.Column>
-            <Grid.Column textAlign='right'>
+            <Grid.Column floated='right'>
                 <Segment basic>
                     {children}
                 </Segment>

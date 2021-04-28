@@ -1,5 +1,5 @@
 .status-bar .column {
-    padding: 0  1em;
+    padding: 0 1em !important;
 }
 
 .status-bar button {
