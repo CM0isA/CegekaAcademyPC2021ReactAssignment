@@ -27,7 +27,7 @@ const DeleteButton = ({ index, objectName, deleteObject}: DeleteButtonProps) => 
                 content={`Are you sure you want to delete '${objectName}'?`}
                 cancelButton='No'
                 confirmButton='Yes, delete it!'
-                onCancel={() => onCancelConfirm()}
+                onCancel={() =>onCancelConfirm()}
                 onConfirm={() => onOkConfirm()}
             />
             }

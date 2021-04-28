@@ -1,47 +1,44 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Route, Switch } from "react-router";
-import { AlbumModel } from "../../models/AlbumModel"
 import { PhotoModel } from "../../models/PhotoModel";
 import AlbumList from "../Album/AlbumList";
 import * as api from "../../api"
 import { PhotoList } from "../Photo";
+import { AlbumsContext } from "../../contexts/AlbumContext";
 
 const Main = () => {
-    const [albums, setAlbums] = useState<AlbumModel[]>([]);
+    
     const [photos, setPhotos] = useState<PhotoModel[]>([]);
-
+    const {albums, editAlbum, createAlbum, deleteAlbum} = useContext(AlbumsContext)
+    
+    
     useEffect(() =>{
-        const localAlbums = localStorage.getItem('albums')
         const localPhotos = localStorage.getItem('photos')
 
-        if(localAlbums && localPhotos){
-            setAlbums(JSON.parse(localAlbums));
+        if(localPhotos){
+            
             setPhotos(JSON.parse(localPhotos));
         }
         else{
-            const albumsResponse = api.getAlbums();
+            
             const photosResponse = api.getPhotos();
-            setAlbums(albumsResponse);
+            
             setPhotos(photosResponse);
            
         }
     },[])
 
-    useEffect(() =>{
-        localStorage.setItem('albums', JSON.stringify(albums))
-    },[albums])
 
     useEffect(() =>{
         localStorage.setItem('photos', JSON.stringify(photos))
     },[photos])
 
-
     const createPhoto = (photo: PhotoModel) => {
         const timestamp = Date.now();
         photo.id = `photo-${timestamp}`
         setPhotos(prevPhotos => [...prevPhotos, photo]);
-
     }
+    
 
     const editPhoto = (key: string, updatedPhoto: PhotoModel) => {
         const updatedPhotos = photos.map(photo => photo.id ===key ? updatedPhoto : photo)
@@ -54,23 +51,7 @@ const Main = () => {
 
     }
 
-    const createAlbum = (album: AlbumModel) => {
-        const timestamp = Date.now();
-        album.id = `album-${timestamp}`
-        setAlbums(prevAlbums => [...prevAlbums, album]);
-    }
-
-    const editAlbum = (key: string, updatedAlbum: AlbumModel) => {
-        const updatedAlbums = albums.map(album => album.id === key ? updatedAlbum : album)
-        setAlbums(updatedAlbums)
-
-    }
-
-    const deleteAlbum = (key: string) => {
-        const updatedAlbums = albums.filter(album => album.id !==key)
-        setAlbums(updatedAlbums);
-
-    }
+    
 
 
     const albumList = () => <AlbumList

@@ -7,7 +7,7 @@ interface StatusbarProps{
 const StatusBar:React.FC<StatusbarProps> = ({title, children}) => {
     return  (
         <Grid column={2}> 
-            <Grid.Column class='four wide column right aligned'>
+            <Grid.Column class='four wide column right'>
                 <Segment basic>
                     {title}
                 </Segment>
