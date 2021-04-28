@@ -1,8 +1,6 @@
 import { Card, Icon, Label, Image, Button } from "semantic-ui-react"
 import { AlbumModel } from "../../models/AlbumModel"
 import { PhotoModel } from "../../models/PhotoModel"
-import { WithLightbox } from "../Common"
-import Photo from "../Photo"
 
 interface AlbumProps {
     album : AlbumModel;

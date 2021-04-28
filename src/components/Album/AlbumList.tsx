@@ -65,7 +65,7 @@ const AlbumList = ({ albums, photos, createAlbum, editAlbum, deleteAlbum}: Album
     }
     return (
         <div>
-            <StatusBar title={`${photos.length} Album(s) total`}>
+            <StatusBar title={`${albums.length} Album(s) total`}>
                 <AlbumForm 
                 formType='New'
                 createAlbum={createAlbum}

@@ -7,22 +7,22 @@ export const PhotoReducer = (prevState: any, action: any) => {
         case PhotoActionTypes.CREATE_PHOTO: {
             const timestamp = Date.now();
             const photo = action.photo;
-            photo.id = `album-${timestamp}`
+            photo.id = `photo-${timestamp}`
             return [
                 ...prevState,
                 photo
             ];
         }
         case PhotoActionTypes.EDIT_PHOTO: {
-            const updatedAlbums = prevState.filter((photo: PhotoModel) => photo.id === action.key ? action.updatedAlbums : photo)
+            const updatePhotos = prevState.filter((photo: PhotoModel) => photo.id === action.key ? action.updatePhotos : photo)
             return [
-                ...updatedAlbums
+                ...updatePhotos
             ];
         }
         case PhotoActionTypes.DELETE_PHOTO: {
-            const updatedAlbums = prevState.filter((photo: PhotoModel) => photo.id !== action.key)
+            const updatePhotos = prevState.filter((photo: PhotoModel) => photo.id !== action.key)
             return [
-                ...updatedAlbums
+                ...updatePhotos
             ];
         }
     }

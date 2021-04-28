@@ -1,7 +1,7 @@
 import { AlbumModel } from "../models/AlbumModel";
 import * as api from "../api"
 import { createContext, useEffect, useReducer } from "react";
-import { AlbumReducer } from "../reducers/albumReducers";
+import { AlbumReducer} from "../reducers/albumReducers"
 import { AlbumActionTypes } from "../actions/albumActionTypes";
 
 let dispatcher = {

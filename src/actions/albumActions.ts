@@ -2,7 +2,7 @@ import * as actionTypes from './albumActionTypes'
 import { AlbumModel } from "../models/AlbumModel";
 
 export const createAlbum = (album: AlbumModel) => {
-    const key  = `album $(Date.mow())`;
+    const key  = `album-$(Date.mow())`;
     return {
         type: actionTypes.AlbumActionTypes.CREATE_ALBUM,
         album,
